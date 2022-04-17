@@ -13,14 +13,14 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Activity Log</h3>
-                    <p class="text-subtitle text-muted">For log list</p>
+                    <h3>Journal d'activité</h3>
+                    <p class="text-subtitle text-muted">Pour la liste des journaux</p>
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Activity Log</li>
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Tableau de bord</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Journal d'activité</li>
                         </ol>
                     </nav>
                 </div>
@@ -58,16 +58,5 @@
             </div>
         </section>
     </div>
-    <footer>
-        <div class="footer clearfix mb-0 text-muted ">
-            <div class="float-start">
-                <p>2021 &copy; Soeng Souy</p>
-            </div>
-            <div class="float-end">
-                <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                href="http://soengsouy.com">Soeng Souy</a></p>
-            </div>
-        </div>
-    </footer>
 </div>
 @endsection

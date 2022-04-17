@@ -77,6 +77,9 @@
                                     @if($item->role_name =='Normal User')
                                     <td class="role_name"><span  class=" badge bg-warning">{{ $item->role_name }}</span></td>
                                     @endif
+                                    @if($item->role_name =='professeur')
+                                    <td class="role_name"><span  class=" badge bg-warning">{{ $item->role_name }}</span></td>
+                                    @endif
                                     <td class="text-center">
                                         <a href="{{ route('user/add/new') }}">
                                             <span class="badge bg-info"><i class="bi bi-person-plus-fill"></i></span>
@@ -94,16 +97,5 @@
             </div>
         </section>
     </div>
-    <footer>
-        <div class="footer clearfix mb-0 text-muted ">
-            <div class="float-start">
-                <p>2021 &copy; Soeng Souy</p>
-            </div>
-            <div class="float-end">
-                <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                href="http://soengsouy.com">Soeng Souy</a></p>
-            </div>
-        </div>
-    </footer>
 </div>
 @endsection

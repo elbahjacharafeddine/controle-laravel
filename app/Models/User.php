@@ -2,11 +2,16 @@
 
 namespace App\Models;
 
+use App\Models\Dossier;
+use App\Models\Professeur;
+use App\Traits\LockableTrait;
+use Illuminate\Notifications\Notifiable;
+use App\Models\Dossier\DossierPedagogique;
+use App\Models\Dossier\DossierScientifique;
+use App\Models\Dossier\DossierAdministratif;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use App\Traits\LockableTrait;
 
 class User extends Authenticatable
 {
@@ -44,4 +49,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function ProfesseurUser(){
+        return $this->hasOne(Professeur::class);
+    }
+    public function dossierScientifique()
+    {
+        return $this->hasMany(DossierScientifique::class);
+    }
+    public function dossierPedagogique()
+    {
+        return $this->hasMany(DossierPedagogique::class);
+    }
+    public function dossierAdministratif()
+    {
+        return $this->hasMany(DossierAdministratif::class);
+    }
 }

@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Brian2694\Toastr\Facades\Toastr;
-use DB;
-use App\Models\User;
-use App\Models\Form;
-use App\Rules\MatchOldPassword;
 use Carbon\Carbon;
-use Session;
-use Auth;
-use Hash;
+use App\Models\Form;
+use App\Models\User;
+use Illuminate\Http\Request;
+use App\Rules\MatchOldPassword;
+use Illuminate\Support\Facades\DB;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use App\Models\Professeur;
 
 
 class UserManagementController extends Controller
@@ -66,7 +67,7 @@ class UserManagementController extends Controller
     // add new user
     public function addNewUser()
     {
-        return view('usermanagement.add_new_user');
+        return view('usermanagement.add_user');
     }
 
      // save new user
@@ -95,8 +96,13 @@ class UserManagementController extends Controller
         $user->password     = Hash::make($request->password);
  
         $user->save();
-
-        Toastr::success('Create new account successfully :)','Success');
+        $professeur = new Professeur;
+        $professeur->email              = $request->email; 
+        $professeur->role               = $request->role_name;
+        $professeur->last_name          = $request->name;
+        $professeur->user_id            = $user->id;
+        $professeur->save();
+        Toastr::success('Create new account successfully ','Success');
         return redirect()->route('userManagement');
     }
     
@@ -219,6 +225,7 @@ class UserManagementController extends Controller
         Toastr::success('User change successfully :)','Success');
         return redirect()->route('home');
     }
+
 }
 
 

@@ -1,13 +1,15 @@
 <?php
 
+use App\Http\Controllers\LockScreen;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FormController;
 use App\Http\Controllers\PhotosController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ResetPasswordController;
-use App\Http\Controllers\FormController;
 use App\Http\Controllers\UserManagementController;
-use App\Http\Controllers\LockScreen;
+use App\Http\Controllers\Dossiers\DossierController;
 
 
 /*
@@ -35,6 +37,27 @@ Route::group(['middleware'=>'auth'],function()
     {
         return view('home');
     });
+
+    Route::get('/edit/profile',function(){
+        return view('usermanagement\edit_profile');
+    });
+    Route::post('update/profile/professeur',[App\Http\Controllers\ProfesseurController::class,'update_profileProfesseur'])->name('update/profile/professeur');
+
+    Route::get('etat/dossiers/pedagogiques',[App\Http\Controllers\ProfesseurController::class,'SuivreDossierPedagogique']);
+    Route::get('etat/dossiers/administratifs',[App\Http\Controllers\ProfesseurController::class,'SuivreDossierAdministratif']);
+    Route::get('etat/dossiers/scientifiques',[App\Http\Controllers\ProfesseurController::class,'SuivreDossierScientifique']);
+
+    Route::get('poser/dossiers',[App\Http\Controllers\Dossiers\DossierController::class,'formDossiers']);
+
+    Route::post('update/dossiers/professeur',[App\Http\Controllers\Dossiers\DossierController::class,'storeDossiers']);
+
+            //pour la supprissesion et validation des dossiers
+    Route::get('delete/dossierPedagogique/{id}',[App\Http\Controllers\Dossiers\DossierController::class,'delete_dossierPedagogique_ByAdmin']);
+    Route::get('validate/dossierPedagogique/{id}',[App\Http\Controllers\Dossiers\DossierController::class,'validate_dossierPedagogique_ByAdmin']);
+    Route::get('delete/dossierScientifique/{id}',[App\Http\Controllers\Dossiers\DossierController::class,'delete_dossierScientifique_ByAdmin']);
+    Route::get('validate/dossierScientifique/{id}',[App\Http\Controllers\Dossiers\DossierController::class,'validate_dossierScientifique_ByAdmin']);
+
+
 });
 
 Auth::routes();
