@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Demmandes\Demmande;
 use App\Models\Dossier;
 use App\Models\Professeur;
 use App\Traits\LockableTrait;
@@ -50,19 +51,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function ProfesseurUser(){
-        return $this->hasOne(Professeur::class);
-    }
-    public function dossierScientifique()
-    {
-        return $this->hasMany(DossierScientifique::class);
-    }
-    public function dossierPedagogique()
-    {
-        return $this->hasMany(DossierPedagogique::class);
-    }
-    public function dossierAdministratif()
-    {
-        return $this->hasMany(DossierAdministratif::class);
+
+    public function DemmandesUser(){
+        return $this->hasMany(Demmande::class);
     }
 }
